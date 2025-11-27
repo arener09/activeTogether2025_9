@@ -1,13 +1,50 @@
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="registration-form">
   <h2>Zum Kurs anmelden!</h2>
-  <input placeholder="Name" type="input" formControlName="name" /><br />
-  <input placeholder="Geburtsdatum" type="date" formControlName="birthdate" /><br />
-  <select formControlName="courseId">
-    <option value="" disabled>Bitte auswählen</option>
-    @for (course of store.courses; track $index) {
-    <option [ngValue]="course.id">{{ course.name }}</option>
-    }
-  </select>
 
-  <button type="submit">Erfassen</button>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Name der registrierten Person" />
+    @if (signupForm.get('name')?.invalid && signupForm.get('name')?.touched) {
+    <mat-error>{{ getErrorMessage('name') }}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Geburtsdatum</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthdate" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    @if (signupForm.get('birthdate')?.invalid && signupForm.get('birthdate')?.touched) {
+    <mat-error>{{ getErrorMessage('birthdate') }}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>E-Mail</mat-label>
+    <input matInput type="email" formControlName="email" placeholder="E-Mail-Adresse" />
+    @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
+    <mat-error>{{ getErrorMessage('email') }}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-checkbox formControlName="newsletter">
+    Anmeldung zum Newsletter für neue Kursangebote
+  </mat-checkbox>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Kurs auswählen</mat-label>
+    <mat-select formControlName="courseId">
+      <mat-option value="" disabled>Bitte auswählen</mat-option>
+      @for (course of store.courses; track $index) {
+      <mat-option [value]="course.id">{{ course.name }}</mat-option>
+      }
+    </mat-select>
+    @if (signupForm.get('courseId')?.invalid && signupForm.get('courseId')?.touched) {
+    <mat-error>{{ getErrorMessage('courseId') }}</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
+    Erfassen
+  </button>
 </form>

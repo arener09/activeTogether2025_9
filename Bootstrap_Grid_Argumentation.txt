@@ -1,0 +1,11 @@
+Ich habe Bootstrap Grid gewählt, weil es nach wie vor eine etablierte, weit verbreitete Lösung ist, 
+die in vielen Projekt eingesetzt wird. Bootstrap Grid ermöglicht ein vollständig responsives Layout ohne zusätzlichen CSS-Aufwand, 
+dank vordefinierter Breakpoints und Utility-Klassen, wodurch Anforderungen wie „12 Spalten auf Mobile, 10 auf Desktop, zentriert“ 
+leicht umgesetzt werden können. Außerdem sorgt das System für konsistente Abstände, klare Konventionen und eine flexible 
+Handhabung verschiedener Layouts.
+
+Aber ganz ehrliche Meinung:
+
+Es ist für dieses Beispiel nicht so extrem entscheidend, welche Technologie gewählt wird. :-D
+
+Am Projekt würd ichs wahrscheinlich vermdeiden, weil es eine zusätzliche Dependency schafft.

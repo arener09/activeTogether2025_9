@@ -1,50 +1,93 @@
-<h1>Alle Kurse</h1>
-<table>
-  <tr>
-    <th>Kurs</th>
-    <th>Veranstaltungsort</th>
-    <th>Adresse des Veranstaltungsortes</th>
-    <th>Öffentlich erreichbar?</th>
-    <th>Kursleiter</th>
-    <th>Alle Termine</th>
-  </tr>
-  @for(course of store.courses; track $index) {
-  <tr>
-    <td>{{ course.name }}</td>
-    <td>{{ course.eventLocation.name }}</td>
-    <td>{{ course.eventLocation.address }}</td>
-    <td>{{ course.eventLocation.venueByPublicTansport == true ? 'Ja' : 'Nein' }}</td>
-    <td>{{ course.instructor }}</td>
-    <td>
-      <ul>
-        @for(date of course.dates; track $index) {
-        <li>
-          <span>{{ date.begin | date : "MMM dd, yyyy 'um' hh:mm a" }}</span> -
-          <span>{{ date.end | date : "MMM dd, yyyy 'um' hh:mm a" }}</span>
-        </li>
-        }
-      </ul>
-    </td>
-  </tr>
-  }
-</table>
+<h1 class="text-center my-4">Alle Kurse</h1>
+<div class="container-fluid px-0">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+      <div class="table-responsive">
+        <div class="table-container courses-table">
+          <!-- Header Row -->
+          <div class="row g-0 d-none d-md-flex">
+            <div class="col-md-2 table-header fw-bold text-center p-3">Kurs</div>
+            <div class="col-md-2 table-header fw-bold text-center p-3">Veranstaltungsort</div>
+            <div class="col-md-2 table-header fw-bold text-center p-3">Adresse des Veranstaltungsortes</div>
+            <div class="col-md-2 table-header fw-bold text-center p-3">Öffentlich erreichbar?</div>
+            <div class="col-md-2 table-header fw-bold text-center p-3">Kursleiter</div>
+            <div class="col-md-2 table-header fw-bold text-center p-3">Alle Termine</div>
+          </div>
 
-<h1>Alle Anmeldungen</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Geburtsdatum</th>
-      <th>Kurs</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(registration of store.registrations; track $index) {
-    <tr>
-      <td>{{ registration.name }}</td>
-      <td>{{ registration.birthdate }}</td>
-      <td>{{ registration.course?.name }}</td>
-    </tr>
-    }
-  </tbody>
-</table>
+          <!-- Data Rows -->
+          @for(course of store.courses; track $index) {
+          <div class="row g-0 table-row">
+            <div class="col-12 col-md-2 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Kurs:</span>
+              <span class="table-value">{{ course.name }}</span>
+            </div>
+            <div class="col-12 col-md-2 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Veranstaltungsort:</span>
+              <span class="table-value">{{ course.eventLocation.name }}</span>
+            </div>
+            <div class="col-12 col-md-2 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Adresse:</span>
+              <span class="table-value">{{ course.eventLocation.address }}</span>
+            </div>
+            <div class="col-12 col-md-2 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Öffentlich erreichbar:</span>
+              <span class="table-value">{{ course.eventLocation.venueByPublicTansport == true ? 'Ja' : 'Nein' }}</span>
+            </div>
+            <div class="col-12 col-md-2 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Kursleiter:</span>
+              <span class="table-value">{{ course.instructor }}</span>
+            </div>
+            <div class="col-12 col-md-2 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Alle Termine:</span>
+              <ul class="table-value mb-0">
+                @for(date of course.dates; track $index) {
+                <li>
+                  <span>{{ date.begin | date : "MMM dd, yyyy 'um' hh:mm a" }}</span> -
+                  <span>{{ date.end | date : "MMM dd, yyyy 'um' hh:mm a" }}</span>
+                </li>
+                }
+              </ul>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1 class="text-center my-4">Alle Anmeldungen</h1>
+<div class="container-fluid px-0">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+      <div class="table-responsive">
+        <div class="table-container registrations-table">
+          <!-- Header Row -->
+          <div class="row g-0 d-none d-md-flex">
+            <div class="col-md-4 table-header fw-bold text-center p-3">Name</div>
+            <div class="col-md-4 table-header fw-bold text-center p-3">Geburtsdatum</div>
+            <div class="col-md-4 table-header fw-bold text-center p-3">Kurs</div>
+          </div>
+
+          <!-- Data Rows -->
+          @for(registration of store.registrations; track $index) {
+          <div class="row g-0 table-row">
+            <div class="col-12 col-md-4 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Name:</span>
+              <span class="table-value">{{ registration.name }}</span>
+            </div>
+            <div class="col-12 col-md-4 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Geburtsdatum:</span>
+              <span class="table-value">{{ registration.birthdate }}</span>
+            </div>
+            <div class="col-12 col-md-4 table-cell">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Kurs:</span>
+              <span class="table-value">{{ registration.course?.name }}</span>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

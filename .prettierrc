@@ -1,0 +1,20 @@
+{
+  "useTabs": false,
+  "tabWidth": 2,
+  "insertFinalNewline": true,
+
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "singleQuote": true
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "proseWrap": "preserve"
+      }
+    }
+  ]
+}
