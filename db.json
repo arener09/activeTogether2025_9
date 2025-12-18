@@ -5,8 +5,14 @@
       "name": "Schnuppertauchen",
       "instructor": "Maximilian Tiefgang",
       "dates": [
-        { "begin": "2024-11-13T17:00:00", "end": "2024-11-13T19:00:00" },
-        { "begin": "2024-11-14T17:00:00", "end": "2024-11-14T19:00:00" }
+        {
+          "begin": "2024-11-13T17:00:00",
+          "end": "2024-11-13T19:00:00"
+        },
+        {
+          "begin": "2024-11-14T17:00:00",
+          "end": "2024-11-14T19:00:00"
+        }
       ],
       "eventLocationId": 1
     },
@@ -15,8 +21,14 @@
       "name": "Reiten",
       "instructor": "Cowboy Tim",
       "dates": [
-        { "begin": "2024-11-13T17:00:00", "end": "2024-11-13T19:00:00" },
-        { "begin": "2024-11-14T17:00:00", "end": "2024-11-14T19:00:00" }
+        {
+          "begin": "2024-11-13T17:00:00",
+          "end": "2024-11-13T19:00:00"
+        },
+        {
+          "begin": "2024-11-14T17:00:00",
+          "end": "2024-11-14T19:00:00"
+        }
       ],
       "eventLocationId": 2
     },
@@ -25,8 +37,14 @@
       "name": "Tennis",
       "instructor": "Cowboy Tim",
       "dates": [
-        { "begin": "2024-11-13T17:00:00", "end": "2024-11-13T19:00:00" },
-        { "begin": "2024-11-14T17:00:00", "end": "2024-11-14T19:00:00" }
+        {
+          "begin": "2024-11-13T17:00:00",
+          "end": "2024-11-13T19:00:00"
+        },
+        {
+          "begin": "2024-11-14T17:00:00",
+          "end": "2024-11-14T19:00:00"
+        }
       ],
       "eventLocationId": 2
     },
@@ -35,8 +53,14 @@
       "name": "Yoga",
       "instructor": "Manuela Ganzentspannt",
       "dates": [
-        { "begin": "2024-11-13T17:00:00", "end": "2024-11-13T19:00:00" },
-        { "begin": "2024-11-14T17:00:00", "end": "2024-11-14T19:00:00" }
+        {
+          "begin": "2024-11-13T17:00:00",
+          "end": "2024-11-13T19:00:00"
+        },
+        {
+          "begin": "2024-11-14T17:00:00",
+          "end": "2024-11-14T19:00:00"
+        }
       ],
       "eventLocationId": 3
     }
@@ -64,15 +88,99 @@
   "registrations": [
     {
       "id": 1,
-      "name": "Testuser",
-      "birthdate": "2024-11-13",
+      "name": "Anna Huber",
+      "birthdate": "1998-03-21",
+      "email": "anna.huber@example.com",
+      "newsletter": true,
       "courseId": "_iL775j"
     },
     {
       "id": 2,
-      "name": "Julia",
-      "birthdate": "2024-11-13",
+      "name": "Lukas Mayer",
+      "birthdate": "1995-07-12",
+      "email": "lukas.mayer@example.com",
+      "newsletter": false,
+      "courseId": "_iL775j"
+    },
+    {
+      "id": 3,
+      "name": "Sophie Berger",
+      "birthdate": "2001-11-02",
+      "email": "sophie.berger@example.com",
+      "newsletter": true,
       "courseId": "_iL775p"
+    },
+    {
+      "id": 4,
+      "name": "Thomas Winkler",
+      "birthdate": "1989-01-15",
+      "email": "thomas.winkler@example.com",
+      "newsletter": false,
+      "courseId": "_iL775p"
+    },
+    {
+      "id": 5,
+      "name": "Julia Steiner",
+      "birthdate": "1993-09-30",
+      "email": "julia.steiner@example.com",
+      "newsletter": true,
+      "courseId": "_iL775o"
+    },
+    {
+      "id": 6,
+      "name": "Michael Gruber",
+      "birthdate": "1985-05-08",
+      "email": "michael.gruber@example.com",
+      "newsletter": false,
+      "courseId": "_iL775o"
+    },
+    {
+      "id": 7,
+      "name": "Eva Leitner",
+      "birthdate": "2000-12-19",
+      "email": "eva.leitner@example.com",
+      "newsletter": true,
+      "courseId": "_iL175j"
+    },
+    {
+      "id": 8,
+      "name": "Peter Schmid",
+      "birthdate": "1990-06-05",
+      "email": "peter.schmid@example.com",
+      "newsletter": false,
+      "courseId": "_iL175j"
+    },
+    {
+      "id": 9,
+      "name": "Clara Weiss",
+      "birthdate": "1999-04-18",
+      "email": "clara.weiss@example.com",
+      "newsletter": true,
+      "courseId": "_iL775j"
+    },
+    {
+      "id": 10,
+      "name": "Jonas Hofer",
+      "birthdate": "1992-02-27",
+      "email": "jonas.hofer@example.com",
+      "newsletter": false,
+      "courseId": "_iL775p"
+    },
+    {
+      "id": 11,
+      "name": "Miriam Koch",
+      "birthdate": "1987-08-03",
+      "email": "miriam.koch@example.com",
+      "newsletter": true,
+      "courseId": "_iL775o"
+    },
+    {
+      "id": 12,
+      "name": "Daniel Fuchs",
+      "birthdate": "1996-10-22",
+      "email": "daniel.fuchs@example.com",
+      "newsletter": false,
+      "courseId": "_iL175j"
     }
   ]
 }

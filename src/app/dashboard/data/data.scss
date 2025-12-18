@@ -42,6 +42,46 @@
   }
 }
 
+.registration-row {
+  position: relative;
+}
+
+.registration-row-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.row-spinner {
+  width: 32px;
+  height: 32px;
+  border-width: 4px;
+}
+
+.no-data-message {
+  padding: 1rem;
+  text-align: center;
+  color: var(--bs-gray-600);
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-top: 1px solid var(--bs-border-color);
+  background-color: var(--bs-gray-50);
+}
+
+.pagination-info {
+  font-size: 0.875rem;
+  color: var(--bs-gray-700);
+}
+
 .table-cell {
   background-color: var(--bs-white);
   padding: 1rem;

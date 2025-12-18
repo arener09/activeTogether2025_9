@@ -11,10 +11,10 @@ import { Backend } from '../../shared/backend';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-add-data',
@@ -23,7 +23,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -36,6 +35,8 @@ export class AddData {
   public backend = inject(Backend);
   private fb = inject(FormBuilder);
   public signupForm: any;
+  public isSubmitting = false;
+  public submitSucceeded = false;
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -49,14 +50,18 @@ export class AddData {
 
   onSubmit() {
     if (this.signupForm.valid) {
+      this.isSubmitting = true;
+      this.submitSucceeded = false;
       const formValue = { ...this.signupForm.value };
-      // Convert Date object to ISO string format for birthdate
+      // Convert Date object to local ISO-like string (yyyy-MM-dd) in de-AT Locale, ohne Zeitzonen-Verschiebung
       if (formValue.birthdate instanceof Date) {
-        formValue.birthdate = formValue.birthdate.toISOString().split('T')[0];
+        formValue.birthdate = formatDate(formValue.birthdate, 'yyyy-MM-dd', 'de-AT');
       }
       this.backend.addRegistration(formValue);
       this.signupForm.reset();
       this.signupForm.patchValue({ newsletter: false });
+      this.isSubmitting = false;
+      this.submitSucceeded = true;
     } else {
       // Mark all fields as touched to show validation errors
       Object.keys(this.signupForm.controls).forEach((key) => {

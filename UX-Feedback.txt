@@ -1,0 +1,116 @@
+1) Klarere Rückmeldung nach erfolgreicher Kurs-Anmeldung (Success-Message)
+---------------------------------------------------------------------------
+Problem:
+Nach dem Absenden des Formulars wird die Anmeldung zwar gespeichert, aber Nutzer:innen
+erhalten ohne zusätzliche Rückmeldung kein direktes Feedback, ob die Aktion erfolgreich war.
+
+Lösung:
+Nach erfolgreichem Absenden wird das Formular zurückgesetzt und oberhalb des Formulars eine
+gut sichtbare Erfolgsmeldung angezeigt:
+„Ihre Anmeldung wurde erfolgreich erfasst.“
+(umgesetzt im Angular-Component `AddData` - Dateien: `src/app/dashboard/add-data/add-data.ts` und `add-data.html`)
+
+Nutzen:
+Erhöht Vertrauen und Klarheit, reduziert Unsicherheit, ob die Anmeldung wirklich
+im System gelandet ist.
+
+
+2) Besser lesbares Geburtsdatum in der Anmeldungs-Tabelle
+---------------------------------------------------------
+Problem:
+Das Geburtsdatum wurde bisher als Roh-String angezeigt, was weniger gut lesbar ist
+und uneinheitlich wirken kann.
+
+Lösung:
+Das Geburtsdatum wird nun in ein konsistentes, lokales Datumsformat (dd.MM.yyyy) formatiert.
+(umgesetzt in der Anmeldungs-Tabelle - Datei: `src/app/dashboard/data/data.html`)
+
+Nutzen:
+Höhere Lesbarkeit, leichteres Erfassen von Daten und professioneller wirkende Darstellung.
+
+
+3) Verbesserte Kurs-Auswahl im Dropdown (Kursname + Veranstaltungsort)
+----------------------------------------------------------------------
+Problem:
+Im Anmeldeformular zeigt die Dropdown-Liste nur den Kursnamen. Bei mehreren ähnlichen
+Kursnamen ist unklar, wo der Kurs stattfindet.
+
+Lösung:
+Jede Kurs-Option zeigt jetzt sowohl den Kursnamen als auch den Veranstaltungsort,
+zum Beispiel:
+„Yoga Basics - Stadthalle“.
+(umgesetzt im Kurs-Select des Anmeldeformulars - Datei: `src/app/dashboard/add-data/add-data.html`)
+
+Nutzen:
+Schnellere und sicherere Kursauswahl, weniger Fehlanmeldungen und bessere Orientierung,
+insbesondere bei mehreren ähnlichen Kursen.
+
+
+4) Deaktivierter Submit-Button mit Ladezustand beim Speichern der Anmeldung
+---------------------------------------------------------------------------
+Problem:
+Während des Speicherns ist nicht klar ersichtlich, ob der Klick auf „Erfassen“
+bereits verarbeitet wird; Mehrfachklicks sind möglich.
+
+Lösung:
+Der „Erfassen“-Button wird bei ungültigem Formular sowie während des Speichervorgangs
+deaktiviert und zeigt im Ladezustand den Text „Wird gespeichert…“ an.
+(umgesetzt mit `isSubmitting`-State im `AddData`-Component - Dateien: `add-data.ts` und `add-data.html`)
+
+Nutzen:
+Verhindert doppelte Anfragen, macht den Systemzustand transparent und verbessert
+die wahrgenommene Performance.
+
+
+5) Leere-Zustände (Empty States) für Kurse und Anmeldungen
+----------------------------------------------------------
+Problem:
+Wenn keine Kurse oder keine Anmeldungen vorhanden sind, erscheint bislang nur
+ein leeres Grid. Nutzer:innen wissen nicht, ob ein Fehler vorliegt oder ob
+wirklich nur keine Daten vorhanden sind.
+
+Lösung:
+Es werden nun klare Hinweistexte angezeigt, sobald die entsprechenden Listen leer sind
+und kein Ladevorgang läuft, z.B.:
+„Derzeit sind keine Kurse verfügbar.“
+„Derzeit liegen keine Anmeldungen vor.“
+(umgesetzt in der Kurs- und Anmeldungsansicht - Datei: `src/app/dashboard/data/data.html`)
+
+Nutzen:
+Bessere Verständlichkeit der Situation, weniger Verwirrung und insgesamt
+professionelleres Erscheinungsbild.
+
+
+6) Verbesserte mobile Lesbarkeit der Tabelleneinträge
+-----------------------------------------------------
+Problem:
+Auf kleineren Bildschirmen können Tabellen schnell unübersichtlich werden, wenn die Inhalte
+ohne klare Struktur und Beschriftung angezeigt werden.
+
+Lösung:
+Die mobile Ansicht der Tabellen nutzt klare, fett formatierte „Mobile-Labels“ (z.B. „Kurs:“,
+„Veranstaltungsort:“), die über dem jeweiligen Wert angezeigt werden. Dadurch entsteht auf
+Smartphones ein kartenähnliches Layout, das sich leichter scannen lässt.
+(umgesetzt durch `mobile-label`-Spans und Responsive-Styles - Dateien: `data.html` und `data.scss`)
+
+Nutzen:
+Schnelleres Erfassen der wichtigsten Informationen auf mobilen Geräten, bessere Orientierung
+und insgesamt nutzerfreundlichere Darstellung der Daten.
+
+
+7) Konsistente leere Zustände mit positiver, neutraler Sprache
+--------------------------------------------------------------
+Problem:
+Leere Zustände können schnell wie ein Fehler wirken oder Nutzer:innen verunsichern, wenn sie
+nicht erklärt werden oder negativ formuliert sind.
+
+Lösung:
+Die Texte in leeren Zuständen wurden bewusst neutral und informativ formuliert
+(z.B. „Derzeit sind keine Kurse verfügbar.“ / „Derzeit liegen keine Anmeldungen vor.“),
+ohne den Eindruck eines Fehlers zu erwecken.
+(umgesetzt in den Empty-State-Elementen der Tabellen - Datei: `src/app/dashboard/data/data.html`)
+
+Nutzen:
+Vermittelt Kontrolle und Transparenz, reduziert Unsicherheit und transportiert
+eine positive, ruhige Markenwirkung, auch wenn gerade keine Daten vorhanden sind.
+

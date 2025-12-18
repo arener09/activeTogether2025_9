@@ -4,7 +4,7 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { Store } from './store';
 import { Course } from './Interfaces/Course';
 import { RegistrationDto, RegistrationModel } from './Interfaces/Registration';
-import { finalize } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -44,14 +44,18 @@ export class Backend {
   }
 
   public addRegistration(registration: RegistrationModel) {
-    this.http.post('http://localhost:5000/registrations', registration).subscribe((_) => {
-      this.getRegistrations();
-    });
+    this.http
+      .post('http://localhost:5000/registrations', registration)
+      .subscribe((_) => {
+        this.getRegistrations();
+      });
   }
 
   public deleteRegistration(id: string) {
-    this.http.delete(`http://localhost:5000/registrations/${id}`).subscribe((_) => {
-      this.getRegistrations();
-    });
+    return this.http.delete(`http://localhost:5000/registrations/${id}`).pipe(
+      tap(() => {
+        this.getRegistrations();
+      })
+    );
   }
 }

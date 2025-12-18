@@ -1,6 +1,12 @@
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="registration-form">
   <h2>Zum Kurs anmelden!</h2>
 
+  @if (submitSucceeded) {
+  <div class="alert alert-success mb-3">
+    Ihre Anmeldung wurde erfolgreich erfasst.
+  </div>
+  }
+
   <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
     <input matInput formControlName="name" placeholder="Name der registrierten Person" />
@@ -11,7 +17,13 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Geburtsdatum</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="birthdate" />
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="birthdate"
+      placeholder="TT.MM.JJJJ"
+      inputmode="numeric"
+    />
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     @if (signupForm.get('birthdate')?.invalid && signupForm.get('birthdate')?.touched) {
@@ -36,7 +48,9 @@
     <mat-select formControlName="courseId">
       <mat-option value="" disabled>Bitte auswählen</mat-option>
       @for (course of store.courses; track $index) {
-      <mat-option [value]="course.id">{{ course.name }}</mat-option>
+      <mat-option [value]="course.id">
+        {{ course.name }} - {{ course.eventLocation.name }}
+      </mat-option>
       }
     </mat-select>
     @if (signupForm.get('courseId')?.invalid && signupForm.get('courseId')?.touched) {
@@ -44,7 +58,16 @@
     }
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
-    Erfassen
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="signupForm.invalid || isSubmitting"
+  >
+    @if (isSubmitting) {
+    <span>Wird gespeichert...</span>
+    } @else {
+    <span>Erfassen</span>
+    }
   </button>
 </form>

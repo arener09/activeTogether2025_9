@@ -42,12 +42,17 @@
               <ul class="table-value mb-0">
                 @for(date of course.dates; track $index) {
                 <li>
-                  <span>{{ date.begin | date : "MMM dd, yyyy 'um' hh:mm a" }}</span> -
-                  <span>{{ date.end | date : "MMM dd, yyyy 'um' hh:mm a" }}</span>
+                  <span>{{ date.begin | date : 'dd.MM.yyyy, HH:mm' }}</span> -
+                  <span>{{ date.end | date : 'dd.MM.yyyy, HH:mm' }}</span>
                 </li>
                 }
               </ul>
             </div>
+          </div>
+          }
+          @if (!store.isLoadingCourses && store.courses.length === 0) {
+          <div class="no-data-message">
+            Derzeit sind keine Kurse verfügbar.
           </div>
           }
         </div>
@@ -71,15 +76,20 @@
           </div>
 
           <!-- Data Rows -->
-          @for(registration of store.registrations; track $index) {
-          <div class="row g-0 table-row">
+          @for (registration of paginatedRegistrations; track registration.id) {
+          <div class="row g-0 table-row registration-row">
+            @if (isDeleting(registration)) {
+            <div class="registration-row-overlay">
+              <div class="spinner row-spinner"></div>
+            </div>
+            }
             <div class="col-12 col-md-3 table-cell">
               <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Name:</span>
               <span class="table-value">{{ registration.name }}</span>
             </div>
             <div class="col-12 col-md-3 table-cell">
               <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Geburtsdatum:</span>
-              <span class="table-value">{{ registration.birthdate }}</span>
+              <span class="table-value">{{ registration.birthdate | date : 'dd.MM.yyyy' }}</span>
             </div>
             <div class="col-12 col-md-3 table-cell">
               <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Kurs:</span>
@@ -87,13 +97,59 @@
             </div>
             <div class="col-12 col-md-3 table-cell text-center">
               <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Aktionen:</span>
-              <button class="btn btn-sm btn-danger" (click)="onDeleteRegistration(registration)">
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="onDeleteRegistration(registration)"
+                [disabled]="isDeleting(registration)"
+              >
                 Anmeldung löschen
               </button>
             </div>
           </div>
           }
+          @if (!store.isLoadingRegistrations && store.registrations.length === 0) {
+          <div class="no-data-message">
+            Derzeit liegen keine Anmeldungen vor.
+          </div>
+          }
         </div>
+        @if (store.registrations.length > registrationsPerPage) {
+        <nav class="pagination-container" aria-label="Seiten für Anmeldungen">
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm me-2"
+            (click)="goToPreviousPage()"
+            [disabled]="currentPage === 1"
+          >
+            Zurück
+          </button>
+
+          @for (page of pages; track page) {
+          <button
+            type="button"
+            class="btn btn-sm me-1"
+            [class.btn-primary]="currentPage === page"
+            [class.btn-outline-primary]="currentPage !== page"
+            (click)="goToPage(page)"
+          >
+            {{ page }}
+          </button>
+          }
+
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm ms-2"
+            (click)="goToNextPage()"
+            [disabled]="currentPage === totalPages"
+          >
+            Weiter
+          </button>
+
+          <span class="pagination-info ms-3">
+            Seite {{ currentPage }} von {{ totalPages }}
+          </span>
+        </nav>
+        }
       </div>
     </div>
   </div>
