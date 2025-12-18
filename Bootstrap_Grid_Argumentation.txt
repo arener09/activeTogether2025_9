@@ -9,3 +9,5 @@ Aber ganz ehrliche Meinung:
 Es ist für dieses Beispiel nicht so extrem entscheidend, welche Technologie gewählt wird. :-D
 
 Am Projekt würd ichs wahrscheinlich vermdeiden, weil es eine zusätzliche Dependency schafft.
+
+Zusätzlich sind die Abgaben für Übung 1 und Übung 2 im selben Repository versioniert: UE_1 ist unter https://github.com/arener09/activeTogether2025_9/tree/UE_1 und UE_2 unter https://github.com/arener09/activeTogether2025_9/tree/UE_2 getaggt, beide im gemeinsamen Repo „activeTogether2025_9“.

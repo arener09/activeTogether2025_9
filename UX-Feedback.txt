@@ -114,3 +114,4 @@ Nutzen:
 Vermittelt Kontrolle und Transparenz, reduziert Unsicherheit und transportiert
 eine positive, ruhige Markenwirkung, auch wenn gerade keine Daten vorhanden sind.
 
+Zusätzlich sind die Abgaben für Übung 1 und Übung 2 im selben Repository versioniert: UE_1 ist unter https://github.com/arener09/activeTogether2025_9/tree/UE_1 und UE_2 unter https://github.com/arener09/activeTogether2025_9/tree/UE_2 getaggt, beide im gemeinsamen Repo „activeTogether2025_9“.
