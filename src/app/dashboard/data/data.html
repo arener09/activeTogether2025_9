@@ -64,25 +64,32 @@
         <div class="table-container registrations-table">
           <!-- Header Row -->
           <div class="row g-0 d-none d-md-flex">
-            <div class="col-md-4 table-header fw-bold text-center p-3">Name</div>
-            <div class="col-md-4 table-header fw-bold text-center p-3">Geburtsdatum</div>
-            <div class="col-md-4 table-header fw-bold text-center p-3">Kurs</div>
+            <div class="col-md-3 table-header fw-bold text-center p-3">Name</div>
+            <div class="col-md-3 table-header fw-bold text-center p-3">Geburtsdatum</div>
+            <div class="col-md-3 table-header fw-bold text-center p-3">Kurs</div>
+            <div class="col-md-3 table-header fw-bold text-center p-3">Aktionen</div>
           </div>
 
           <!-- Data Rows -->
           @for(registration of store.registrations; track $index) {
           <div class="row g-0 table-row">
-            <div class="col-12 col-md-4 table-cell">
+            <div class="col-12 col-md-3 table-cell">
               <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Name:</span>
               <span class="table-value">{{ registration.name }}</span>
             </div>
-            <div class="col-12 col-md-4 table-cell">
+            <div class="col-12 col-md-3 table-cell">
               <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Geburtsdatum:</span>
               <span class="table-value">{{ registration.birthdate }}</span>
             </div>
-            <div class="col-12 col-md-4 table-cell">
+            <div class="col-12 col-md-3 table-cell">
               <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Kurs:</span>
               <span class="table-value">{{ registration.course?.name }}</span>
+            </div>
+            <div class="col-12 col-md-3 table-cell text-center">
+              <span class="mobile-label d-md-none fw-bold small text-secondary mb-1">Aktionen:</span>
+              <button class="btn btn-sm btn-danger" (click)="onDeleteRegistration(registration)">
+                Anmeldung löschen
+              </button>
             </div>
           </div>
           }
